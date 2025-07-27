@@ -6,7 +6,13 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = MessageDao.class, version = 0)
+import com.inaara.whatsappscheduler_app.data.model.Message;
+
+/*
+* Defines the Room database for the app, returning a singleton instance of the Room database.
+* Ensures only one instance is created throughout the app's lifecycle.
+* */
+@Database(entities = Message.class, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract MessageDao messageDao();
