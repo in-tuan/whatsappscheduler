@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/contact_input"
+        android:layout_width="337dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter contact name"
+        android:padding="40dp" />
+
+    <EditText
+        android:id="@+id/message_input"
+        android:layout_width="334dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:hint="Insert message"
+        android:padding="40dp" />
+
+    <Button
+        android:id="@+id/time_picker"
+        android:layout_width="237dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@color/button_bg"
+        android:padding="40dp"
+        android:text="Pick time"
+        android:textColor="@color/button_text" />
+
+    <EditText
+        android:id="@+id/notify_before_input"
+        android:layout_width="341dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:hint="Notify x minutes before"
+        android:inputType="number"
+        android:padding="40dp" />
+
+    <Button
+        android:id="@+id/schedule_button"
+        android:layout_width="229dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@color/button_bg"
+        android:padding="40dp"
+        android:text="Schedule"
+        android:textColor="@color/button_text" />
+
+</LinearLayout>
