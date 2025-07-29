@@ -30,27 +30,20 @@ public class Message {
 
     // Getters and setters
     public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
     public String getContactName() { return contactName; }
-    public void setContactName(String name) { contactName = name; }
+    public void setContactName(String contactName) { this.contactName = contactName; }
 
     public String getPhoneNumber() { return phoneNumber; }
-    public void setPhoneNumber(String newNumber) { phoneNumber = newNumber; }
+    public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
 
     public String getText() { return text; }
-    public void setText(String newText) { text = newText; }
+    public void setText(String text) { this.text = text; }
 
-    public long getScheduledTimeMs() {
-        return scheduledTimeMs;
-    }
-    public void setScheduledTimeMs (long newTime){
-        scheduledTimeMs = newTime;
-    }
+    public long getScheduledTimeMs() { return scheduledTimeMs; }
+    public void setScheduledTimeMs (long scheduledTimeMs){ this.scheduledTimeMs = scheduledTimeMs; }
 
-    public int getReminderOffset() {
-        return reminderOffset;
-    }
-    public void setReminderOffset (int newOffset){
-        reminderOffset = newOffset;
-    }
+    public int getReminderOffset() { return reminderOffset; }
+    public void setReminderOffset (int reminderOffset){ this.reminderOffset = reminderOffset; }
 }
