@@ -6,17 +6,24 @@ import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
+
 import androidx.core.app.NotificationCompat;
 
 import com.inaara.whatsappscheduler_app.R;
 import com.inaara.whatsappscheduler_app.data.database.AppDatabase;
 import com.inaara.whatsappscheduler_app.data.model.Message;
 import com.inaara.whatsappscheduler_app.notification.NotificationHelper;
+import com.inaara.whatsappscheduler_app.ui.MainActivity;
 
+import java.security.Permission;
 import java.util.concurrent.Executors;
 
+/*
+*  Fires notification with extracted message upon receiving scheduled intent.
+* */
 public class MessageReceiver extends BroadcastReceiver {
-
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -26,7 +33,16 @@ public class MessageReceiver extends BroadcastReceiver {
         Executors.newSingleThreadExecutor().execute(() -> {
             Message message = dbInstance.messageDao().getById(messageId);
 
-            // check permission (to go in Main Activity) as a func
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                if (context.checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    Intent permissionIntent = new Intent(context, MainActivity.class)
+                            .putExtra("request_permission", true)
+                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(permissionIntent);
+                    return;
+                }
+            }
 
             NotificationHelper.createNotificationChannel(context);
 
