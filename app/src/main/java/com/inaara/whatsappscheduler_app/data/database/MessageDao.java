@@ -14,7 +14,7 @@ public interface MessageDao {
     public long insert(Message message);
 
     @Delete
-    public long delete(Message message);
+    public void delete(Message message);
 
     @Query("SELECT * FROM messages WHERE id = :id")
     Message getById(int id);
