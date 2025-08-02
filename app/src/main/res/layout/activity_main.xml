@@ -20,6 +20,13 @@
         android:hint="Insert message"
         android:padding="40dp" />
 
+    <EditText
+        android:id="@+id/phone_num_input"
+        android:layout_width="337dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter phone number e.g. +11234568909"
+        android:padding="40dp" />
+
     <Button
         android:id="@+id/time_picker"
         android:layout_width="237dp"

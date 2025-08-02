@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         EditText contactInput = findViewById(R.id.contact_input);
         EditText messageInput = findViewById(R.id.message_input);
+        EditText phoneNumberInput = findViewById(R.id.phone_num_input);
         EditText reminderOffsetInput = findViewById(R.id.notify_before_input);
         Button timePickerButton = findViewById(R.id.time_picker);
         Button scheduleButton = findViewById(R.id.schedule_button);
@@ -127,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
                     );
                     contactInput.setText("");
                     messageInput.setText("");
+                    phoneNumberInput.setText("");
                     reminderOffsetInput.setText("");
                 }
             }
