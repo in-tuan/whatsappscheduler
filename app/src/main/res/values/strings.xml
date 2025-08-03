@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">whatsapp scheduler</string>
+    <string name="app_name_cap">Whatsapp Scheduler</string>
+    <string name="contact_name_hint">Enter contact name</string>
+    <string name="message_hint">Insert message</string>
+    <string name="phone_num_hint">Enter phone number e.g. +11234568909</string>
+    <string name="time_picker_text">Pick time</string>
+    <string name="notify_hint">Notify x minutes before</string>
+    <string name="schedule_btn">Schedule</string>
 </resources>

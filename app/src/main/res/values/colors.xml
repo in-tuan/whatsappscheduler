@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="button_bg">#c41f61</color>
     <color name="button_text">#D5B9C8</color>
+    <color name="transparent_bg">#00FFFFFF</color>
+    <color name="bg_tint">#5AFCE4EC</color>
+    <color name="border">#211212</color>
 </resources>
