@@ -1,8 +1,11 @@
 package com.inaara.whatsappscheduler_app.scheduler;
 
+import static com.inaara.whatsappscheduler_app.notification.NotificationHelper.linkToTap;
+
 import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +19,7 @@ import com.inaara.whatsappscheduler_app.data.database.AppDatabase;
 import com.inaara.whatsappscheduler_app.data.model.Message;
 import com.inaara.whatsappscheduler_app.notification.NotificationHelper;
 import com.inaara.whatsappscheduler_app.ui.MainActivity;
+import com.inaara.whatsappscheduler_app.utils.ClipboardHelper;
 
 import java.security.Permission;
 import java.util.concurrent.Executors;
@@ -46,16 +50,25 @@ public class MessageReceiver extends BroadcastReceiver {
 
             NotificationHelper.createNotificationChannel(context);
 
+            // Intent upon click of notification -> send to Whatsapp
+            PendingIntent pendingNotificationIntent = linkToTap(context, message);
+
             Notification notification = new NotificationCompat.Builder(context, NotificationHelper.CHANNEL)
                     .setContentTitle("Send Message To " + message.getContactName())
                     .setContentText(message.getText())
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                     .setSmallIcon(R.drawable.ic_launcher_foreground)
+                    .setContentIntent(pendingNotificationIntent)
                     .build();
 
             NotificationManager notificationManager = (NotificationManager) context
                     .getSystemService(Context.NOTIFICATION_SERVICE);
             notificationManager.notify(messageId, notification);
+
+            // Copy message to clipboard after notified
+            ClipboardHelper clipboardHelper = new ClipboardHelper(context);
+            clipboardHelper.copyToClipboard("Message to " + message.getContactName(),
+                    message.getText());
 
         });
 

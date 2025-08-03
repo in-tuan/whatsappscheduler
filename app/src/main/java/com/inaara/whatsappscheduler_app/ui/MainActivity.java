@@ -1,5 +1,7 @@
 package com.inaara.whatsappscheduler_app.ui;
 
+import static com.inaara.whatsappscheduler_app.whatsapp.WhatsappHelper.checkWhatsappInstalled;
+
 import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -21,6 +23,7 @@ import com.inaara.whatsappscheduler_app.R;
 import com.inaara.whatsappscheduler_app.data.database.AppDatabase;
 import com.inaara.whatsappscheduler_app.data.model.Message;
 import com.inaara.whatsappscheduler_app.scheduler.Scheduler;
+import com.inaara.whatsappscheduler_app.whatsapp.WhatsappHelper;
 
 import java.util.Calendar;
 import java.util.concurrent.Executors;
@@ -95,16 +98,21 @@ public class MainActivity extends AppCompatActivity {
         scheduleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // check if Whatsapp is installed
+                checkWhatsappInstalled(MainActivity.this);
+
                 if (areInputsValid(contactInput, messageInput, reminderOffsetInput, scheduledTimeMs)) {
 
                     // Backend handling + call to scheduler
                     try {
                         String contactName = contactInput.getText().toString();
+                        String phoneNumber = phoneNumberInput.getText().toString();
                         String messageText = messageInput.getText().toString();
                         int reminderOffset = Integer.parseInt(reminderOffsetInput.getText().toString());
 
                         Message message = new Message();
                         message.setContactName(contactName);
+                        message.setPhoneNumber(phoneNumber);
                         message.setText(messageText);
                         message.setReminderOffset(reminderOffset);
                         message.setScheduledTimeMs(scheduledTimeMs);
