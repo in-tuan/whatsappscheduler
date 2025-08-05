@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+        <style name="Theme.whatsappschedulerapp" parent="Theme.AppCompat.Light.NoActionBar">
+                <!-- Primary brand color. -->
+                <item name="colorPrimary">@color/main</item>
+                <item name="colorPrimaryVariant">@color/time_picker_bg</item>
+                <item name="colorOnPrimary">@color/button_text</item>
+                <!-- Secondary brand color. -->
+                <item name="colorSecondary">@color/bg_tint</item>
+                <item name="colorOnSecondary">@color/time_picker_text</item>
+                <!-- Status bar color. -->
+                <item name="android:statusBarColor">?attr/colorSecondary</item>
+                <!-- Customize your theme here. -->
+                <item name="android:autofilledHighlight">@android:color/transparent</item>
+        </style>
+</resources>
