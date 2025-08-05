@@ -57,7 +57,7 @@ public class MessageReceiver extends BroadcastReceiver {
                     .setContentTitle("Send Message To " + message.getContactName())
                     .setContentText(message.getText() + "\nTap to send")
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                    .setSmallIcon(R.mipmap.scheduler_launcher_foreground)
+                    .setSmallIcon(R.mipmap.scheduler_launcher_pink_foreground)
                     .setContentIntent(pendingNotificationIntent)
                     .build();
 
