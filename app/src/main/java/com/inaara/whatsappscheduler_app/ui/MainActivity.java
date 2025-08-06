@@ -153,7 +153,8 @@ public class MainActivity extends AppCompatActivity {
         if (!isRequiredFieldValid(message)) return false;
         if (!isRequiredFieldValid(notifyBefore)) return false;
 
-        if (scheduledTime <= System.currentTimeMillis()) {
+        long triggerTime = scheduledTime - (long) Integer.parseInt(notifyBefore.getText().toString())*60*1000;
+        if ((scheduledTime <= System.currentTimeMillis()) || (triggerTime <= System.currentTimeMillis())) {
             notifyBefore.setError("Time entered must be in future.");
             return false;
         }
