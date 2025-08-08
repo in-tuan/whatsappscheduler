@@ -1,5 +1,6 @@
 package com.inaara.whatsappscheduler_app.ui;
 
+import static com.inaara.whatsappscheduler_app.utils.PhoneNumberHelper.isPhoneNumberValid;
 import static com.inaara.whatsappscheduler_app.whatsapp.WhatsappHelper.checkWhatsappInstalled;
 
 import android.Manifest;
@@ -101,7 +102,8 @@ public class MainActivity extends AppCompatActivity {
                 // check if Whatsapp is installed
                 checkWhatsappInstalled(MainActivity.this);
 
-                if (areInputsValid(contactInput, messageInput, reminderOffsetInput, scheduledTimeMs)) {
+                if (areInputsValid(contactInput, messageInput, reminderOffsetInput,
+                        phoneNumberInput, scheduledTimeMs)) {
 
                     // Backend handling + call to scheduler
                     try {
@@ -126,18 +128,24 @@ public class MainActivity extends AppCompatActivity {
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                                 scheduler.scheduleMessage(MainActivity.this, message);
                             }
+
+                            runOnUiThread(() -> {
+                                Toast.makeText(MainActivity.this, "Message scheduled",
+                                        Toast.LENGTH_SHORT).show();
+                                contactInput.setText("");
+                                messageInput.setText("");
+                                phoneNumberInput.setText("");
+                                reminderOffsetInput.setText("");
+                            });
+
                         });
                     } catch (Exception e) {
+                        Toast.makeText(MainActivity.this, "Error scheduling message",
+                                Toast.LENGTH_SHORT).show();
                         throw new RuntimeException(e);
                     }
 
-                    runOnUiThread(() ->
-                        Toast.makeText(MainActivity.this, "Message scheduled", Toast.LENGTH_SHORT).show()
-                    );
-                    contactInput.setText("");
-                    messageInput.setText("");
-                    phoneNumberInput.setText("");
-                    reminderOffsetInput.setText("");
+
                 }
             }
         });
@@ -148,10 +156,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public boolean areInputsValid(EditText contact, EditText message, EditText notifyBefore, long scheduledTime) {
+    public boolean areInputsValid(EditText contact,
+                                  EditText message,
+                                  EditText notifyBefore,
+                                  EditText phoneNumber,
+                                  long scheduledTime) {
         if (!isRequiredFieldValid(contact)) return false;
         if (!isRequiredFieldValid(message)) return false;
         if (!isRequiredFieldValid(notifyBefore)) return false;
+        if(phoneNumber.length() != 0) {
+            if(!isPhoneNumberValid(MainActivity.this, phoneNumber.getText().toString())) {
+                phoneNumber.setError("Phone number is invalid.");
+                return false;
+            }
+        }
 
         if (scheduledTime <= System.currentTimeMillis()) {
             notifyBefore.setError("Time entered must be in future.");
