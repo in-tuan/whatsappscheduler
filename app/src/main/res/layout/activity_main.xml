@@ -1,59 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/appbar"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:gravity="center"
     android:orientation="vertical">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="304dp"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_tint"
+        android:padding="2dp"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:text="@string/app_name_cap"
+            android:textColor="@color/main"
+            android:textSize="25sp" />
+    </androidx.appcompat.widget.Toolbar>
+
     <EditText
+        android:background="@drawable/edittext_holder"
         android:id="@+id/contact_input"
-        android:layout_width="337dp"
+        android:layout_width="@dimen/input_width"
         android:layout_height="wrap_content"
-        android:hint="Enter contact name"
-        android:padding="40dp" />
+        android:autofillHints="name"
+        android:hint="@string/contact_name_hint"
+        android:inputType="textPersonName"
+        android:padding="@dimen/padding"
+        android:layout_marginTop="@dimen/input_top_margin"
+        />
 
     <EditText
+        android:background="@drawable/edittext_holder"
         android:id="@+id/message_input"
-        android:layout_width="334dp"
+        android:layout_width="@dimen/input_width"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:hint="Insert message"
-        android:padding="40dp" />
+        android:autofillHints="message"
+        android:hint="@string/message_hint"
+        android:inputType="textMultiLine"
+        android:padding="@dimen/padding"
+        android:layout_marginTop="@dimen/input_top_margin"/>
 
     <EditText
+        android:background="@drawable/edittext_holder"
         android:id="@+id/phone_num_input"
-        android:layout_width="337dp"
+        android:layout_width="@dimen/input_width"
         android:layout_height="wrap_content"
-        android:hint="Enter phone number e.g. +1-800-555-0127"
-        android:padding="40dp" />
+        android:autofillHints="phone number"
+        android:hint="@string/phone_num_hint"
+        android:inputType="phone"
+        android:padding="@dimen/padding"
+        android:layout_marginTop="@dimen/input_top_margin"/>
 
     <Button
         android:id="@+id/time_picker"
-        android:layout_width="237dp"
+        android:layout_width="@dimen/input_width"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:backgroundTint="@color/button_bg"
-        android:padding="40dp"
-        android:text="Pick time"
-        android:textColor="@color/button_text" />
+        android:layout_marginTop="@dimen/input_top_margin"
+        android:background="@color/bg_tint"
+        android:padding="@dimen/padding"
+        android:text="@string/time_picker_text"
+        android:textColor="@color/time_picker_text" />
 
     <EditText
+        android:background="@drawable/edittext_holder"
         android:id="@+id/notify_before_input"
-        android:layout_width="341dp"
+        android:layout_width="@dimen/input_width"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:hint="Notify x minutes before"
+        android:layout_marginTop="@dimen/input_top_margin"
+        android:autofillHints="number"
+        android:hint="@string/notify_hint"
         android:inputType="number"
-        android:padding="40dp" />
+        android:padding="@dimen/padding"/>
 
     <Button
         android:id="@+id/schedule_button"
-        android:layout_width="229dp"
+        android:layout_width="@dimen/button_width"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:backgroundTint="@color/button_bg"
-        android:padding="40dp"
-        android:text="Schedule"
+        android:layout_marginTop="@dimen/button_top_margin"
+        android:background="@color/main"
+        android:padding="@dimen/padding"
+        android:text="@string/schedule_btn"
         android:textColor="@color/button_text" />
 
 </LinearLayout>

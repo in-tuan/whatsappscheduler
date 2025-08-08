@@ -18,6 +18,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
 import com.inaara.whatsappscheduler_app.R;
@@ -59,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
                         MainActivity.this,
-                        //date picker listener = param 2 to instantiate DatePickerDialog
+                        R.style.CustomDatePickerDialogTheme,
+                        //date picker listener = param 3 to instantiate DatePickerDialog
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
@@ -69,7 +71,8 @@ public class MainActivity extends AppCompatActivity {
 
                                 TimePickerDialog timePickerDialog = new TimePickerDialog(
                                         MainActivity.this,
-                                        // time picker listener = param 2 to instantiate TimePickerDialog
+                                        R.style.CustomTimePickerDialogTheme,
+                                        // time picker listener = param 3 to instantiate TimePickerDialog
                                         new TimePickerDialog.OnTimeSetListener() {
                                             @Override
                                             public void onTimeSet(TimePicker timePicker, int hour, int min) {

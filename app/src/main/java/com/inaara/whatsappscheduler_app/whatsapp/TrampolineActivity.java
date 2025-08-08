@@ -17,7 +17,7 @@ public class TrampolineActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Toast.makeText(this, "In Activity Instance", Toast.LENGTH_SHORT).show();
+        // Toast.makeText(this, "In Activity Instance", Toast.LENGTH_SHORT).show();
 
         AppDatabase dbInstance = AppDatabase.getInstance(this);
         int message_id = getIntent().getIntExtra("message_id", 0);

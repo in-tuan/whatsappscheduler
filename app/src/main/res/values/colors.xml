@@ -7,6 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="button_bg">#c41f61</color>
+    <color name="main">#c41f61</color>
+    <color name="main_dark">#9E0D45</color>
     <color name="button_text">#D5B9C8</color>
+    <color name="transparent_bg">#00FFFFFF</color>
+    <color name="bg_tint">#5AFCE4EC</color>
+    <color name="border">#211212</color>
+    <color name="time_picker_bg">#66C41F61</color>
+    <color name="time_picker_bg_opaque">#50172D</color>
+    <color name="time_picker_text">#625D5D</color>
 </resources>

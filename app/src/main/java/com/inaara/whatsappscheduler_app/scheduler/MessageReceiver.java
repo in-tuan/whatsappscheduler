@@ -55,9 +55,9 @@ public class MessageReceiver extends BroadcastReceiver {
 
             Notification notification = new NotificationCompat.Builder(context, NotificationHelper.CHANNEL)
                     .setContentTitle("Send Message To " + message.getContactName())
-                    .setContentText(message.getText())
+                    .setContentText(message.getText() + "\nTap to send")
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                    .setSmallIcon(R.drawable.ic_launcher_foreground)
+                    .setSmallIcon(R.mipmap.scheduler_launcher_pink_foreground)
                     .setContentIntent(pendingNotificationIntent)
                     .setAutoCancel(true)
                     .build();
