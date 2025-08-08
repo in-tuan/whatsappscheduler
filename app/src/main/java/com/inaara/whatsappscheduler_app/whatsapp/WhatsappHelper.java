@@ -32,6 +32,7 @@ public class WhatsappHelper {
         }
 
         Intent whatsappIntent = new Intent(Intent.ACTION_VIEW);
+        whatsappIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         whatsappIntent.setData(Uri.parse(url));
         whatsappIntent.setPackage("com.whatsapp");
 

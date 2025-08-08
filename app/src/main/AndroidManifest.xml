@@ -34,7 +34,9 @@
         <receiver android:name=".notification.NotificationReceiver"/>
 
         <activity android:name=".whatsapp.TrampolineActivity"
-            android:exported="true"/>
+            android:exported="true"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTask"/>
     </application>
 
 

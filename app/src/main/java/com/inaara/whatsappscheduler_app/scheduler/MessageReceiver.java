@@ -59,6 +59,7 @@ public class MessageReceiver extends BroadcastReceiver {
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                     .setSmallIcon(R.drawable.ic_launcher_foreground)
                     .setContentIntent(pendingNotificationIntent)
+                    .setAutoCancel(true)
                     .build();
 
             NotificationManager notificationManager = (NotificationManager) context
