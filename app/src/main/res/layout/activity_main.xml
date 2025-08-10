@@ -70,16 +70,16 @@
         android:text="@string/time_picker_text"
         android:textColor="@color/time_picker_text" />
 
-    <EditText
-        android:background="@drawable/edittext_holder"
-        android:id="@+id/notify_before_input"
+    <TextView
+        android:id="@+id/time_picker_error_view"
         android:layout_width="@dimen/input_width"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/input_top_margin"
-        android:autofillHints="number"
-        android:hint="@string/notify_hint"
-        android:inputType="number"
-        android:padding="@dimen/padding"/>
+        android:textColor="@android:color/holo_red_dark"
+        android:drawablePadding="10dp"
+        android:textSize="14sp"
+        android:visibility="gone"
+        android:textStyle="normal"/>
+
 
     <Button
         android:id="@+id/schedule_button"

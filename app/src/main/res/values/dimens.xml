@@ -2,7 +2,7 @@
 <resources>
     <dimen name="padding">30dp</dimen>
     <dimen name="input_width">337dp</dimen>
-    <dimen name="input_top_margin">20dp</dimen>
-    <dimen name="button_top_margin">35dp</dimen>
+    <dimen name="input_top_margin">40dp</dimen>
+    <dimen name="button_top_margin">50dp</dimen>
     <dimen name="button_width">237dp</dimen>
 </resources>

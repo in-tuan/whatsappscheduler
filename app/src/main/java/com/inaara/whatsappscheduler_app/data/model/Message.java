@@ -24,9 +24,6 @@ public class Message {
     @ColumnInfo(name="scheduled_time_ms")
     private long scheduledTimeMs;   // Time in epoch milliseconds
 
-    @ColumnInfo(name="reminderOffset")
-    private int reminderOffset;    // Minutes before to trigger reminder
-
 
     // Getters and setters
     public int getId() { return id; }
@@ -44,6 +41,4 @@ public class Message {
     public long getScheduledTimeMs() { return scheduledTimeMs; }
     public void setScheduledTimeMs (long scheduledTimeMs){ this.scheduledTimeMs = scheduledTimeMs; }
 
-    public int getReminderOffset() { return reminderOffset; }
-    public void setReminderOffset (int reminderOffset){ this.reminderOffset = reminderOffset; }
 }

@@ -14,9 +14,9 @@ import com.inaara.whatsappscheduler_app.data.model.Message;
 * Ensures only one instance is created throughout the app's lifecycle.
 * */
 @Database(entities = Message.class,
-        version = 2,
+        version = 3,
         exportSchema = true,
-        autoMigrations = { @AutoMigration(from = 1, to = 2) })
+        autoMigrations = { @AutoMigration(from = 2, to = 3, spec= DeleteColMigration.class) })
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract MessageDao messageDao();

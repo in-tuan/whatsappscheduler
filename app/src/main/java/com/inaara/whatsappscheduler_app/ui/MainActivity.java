@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -43,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
         EditText contactInput = findViewById(R.id.contact_input);
         EditText messageInput = findViewById(R.id.message_input);
         EditText phoneNumberInput = findViewById(R.id.phone_num_input);
-        EditText reminderOffsetInput = findViewById(R.id.notify_before_input);
         Button timePickerButton = findViewById(R.id.time_picker);
+        TextView timePickerErrorViewer = findViewById(R.id.time_picker_error_view);
         Button scheduleButton = findViewById(R.id.schedule_button);
 
         // Time Picker logic
@@ -105,21 +106,19 @@ public class MainActivity extends AppCompatActivity {
                 // check if Whatsapp is installed
                 checkWhatsappInstalled(MainActivity.this);
 
-                if (areInputsValid(contactInput, messageInput, reminderOffsetInput,
-                        phoneNumberInput, scheduledTimeMs)) {
+                if (areInputsValid(contactInput, messageInput,
+                        phoneNumberInput, timePickerErrorViewer, scheduledTimeMs)) {
 
                     // Backend handling + call to scheduler
                     try {
                         String contactName = contactInput.getText().toString();
                         String phoneNumber = phoneNumberInput.getText().toString();
                         String messageText = messageInput.getText().toString();
-                        int reminderOffset = Integer.parseInt(reminderOffsetInput.getText().toString());
 
                         Message message = new Message();
                         message.setContactName(contactName);
                         message.setPhoneNumber(phoneNumber);
                         message.setText(messageText);
-                        message.setReminderOffset(reminderOffset);
                         message.setScheduledTimeMs(scheduledTimeMs);
 
                         AppDatabase db = AppDatabase.getInstance(MainActivity.this);
@@ -138,7 +137,8 @@ public class MainActivity extends AppCompatActivity {
                                 contactInput.setText("");
                                 messageInput.setText("");
                                 phoneNumberInput.setText("");
-                                reminderOffsetInput.setText("");
+                                timePickerErrorViewer.setText("");
+                                timePickerErrorViewer.setVisibility(View.INVISIBLE);
                             });
 
                         });
@@ -161,12 +161,11 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean areInputsValid(EditText contact,
                                   EditText message,
-                                  EditText notifyBefore,
                                   EditText phoneNumber,
+                                  TextView timePickerViewer,
                                   long scheduledTime) {
         if (!isRequiredFieldValid(contact)) return false;
         if (!isRequiredFieldValid(message)) return false;
-        if (!isRequiredFieldValid(notifyBefore)) return false;
         if(phoneNumber.length() != 0) {
             if(!isPhoneNumberValid(MainActivity.this, phoneNumber.getText().toString())) {
                 phoneNumber.setError("Phone number is invalid.");
@@ -174,9 +173,10 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        long triggerTime = scheduledTime - (long) Integer.parseInt(notifyBefore.getText().toString())*60*1000;
-        if ((scheduledTime <= System.currentTimeMillis()) || (triggerTime <= System.currentTimeMillis())) {
-            notifyBefore.setError("Time entered must be in future.");
+        if ((scheduledTime <= System.currentTimeMillis())) {
+            timePickerViewer.setVisibility(View.VISIBLE);
+            timePickerViewer.setError("");
+            timePickerViewer.setText("Time entered must be in future.");
             return false;
         }
         return true;

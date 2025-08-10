@@ -29,7 +29,7 @@ public class Scheduler {
 
         alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
-        long triggerTime = message.getScheduledTimeMs() - (long) message.getReminderOffset() * 60 * 1000;
+        long triggerTime = message.getScheduledTimeMs();
 
         Intent intent = new Intent(context, MessageReceiver.class);
         intent.putExtra("message_id", message.getId());
